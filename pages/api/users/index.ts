@@ -35,22 +35,29 @@ export default async function handler(
   }
   // Handle GET requests - List all users, but require a correct 'key' query parameter
   else if (req.method === "GET") {
-    const { key } = req.query; // Extract the 'key' query parameter
-    const correctKey = process.env.PW; // The expected key stored in an environment variable
+    // const { key } = req.query;
+    // const correctKey = process.env.PW;
 
     // Proceed only if the 'key' query parameter exists and matches the expected key
-    if (key && key === correctKey) {
-      try {
-        const users = await prisma.user.findMany();
-        res.status(200).json(users);
-      } catch (error) {
-        res.status(500).json({ error: "Failed to retrieve users" });
-      }
-    } else {
-      // If 'key' is missing or does not match, respond with 401 Unauthorized
-      res
-        .status(401)
-        .json({ error: "Unauthorized: Access requires a valid API key" });
+    // if (key && key === correctKey) {
+    //   try {
+    //     const users = await prisma.user.findMany();
+    //     res.status(200).json(users);
+    //   } catch (error) {
+    //     res.status(500).json({ error: "Failed to retrieve users" });
+    //   }
+    // } else {
+    //   // If 'key' is missing or does not match, respond with 401 Unauthorized
+    //   res
+    //     .status(401)
+    //     .json({ error: "Unauthorized: Access requires a valid API key" });
+    // }
+
+    try {
+      const users = await prisma.user.findMany();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to retrieve users" });
     }
   }
   // Respond with 405 Method Not Allowed if the request method is not supported
