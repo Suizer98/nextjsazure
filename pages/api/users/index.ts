@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
-import nextCors from "nextjs-cors"; // Import the `nextjs-cors` library
+// import nextCors from "nextjs-cors";
 
 const prisma = new PrismaClient();
 
@@ -9,12 +9,13 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   // Run the CORS middleware
-  await nextCors(req, res, {
-    // Options
-    methods: ["GET", "POST"], // Specify which methods to allow
-    origin: "https://suizerlyciawedding.netlify.app", // Specify the origin to allow
-    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
-  });
+  // await nextCors(req, res, {
+  // Options
+  // methods: ["GET", "POST"],
+  // origin: "*",
+  // origin: "https://suizerlyciawedding.netlify.app", // Specify the origin to allow
+  // optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  // });
 
   // Handle POST requests - Create a new user
   if (req.method === "POST") {
