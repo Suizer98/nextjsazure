@@ -20,12 +20,17 @@ You will also see any lint errors in the console.
 
 To install all dependencies from `package.json`
 
+### `npm run format`
+
+To fix all formatting and linting using `prettier`
+
 ### `Storing your postgresql password and secretkey`
 
 ```
 heroku config:set SQLALCHEMY_DATABASE_URL="postgresql://{user}:pw@{hostname}.{yourhostingwebsite}.com/wedding_db_lgif" -a weddingbackend
 heroku config:set SECRETKEY=xxxx -a weddingbackend
 ```
+
 ```.env
 SQLALCHEMY_DATABASE_URL=postgresql://
 SECRETKEY=xxxx
