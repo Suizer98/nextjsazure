@@ -40,6 +40,6 @@ jobs:
       - name: Build and push Docker image
         run: |
           echo "Building Docker image..."
-          docker build -t realtestchallenge.azurecr.io/web:${{ github.sha }} .
+          docker build -t realtestchallenge.azurecr.io/web:latest .
           echo "Pushing image to Azure Container Registry..."
-          docker push realtestchallenge.azurecr.io/web:${{ github.sha }}
+          docker push realtestchallenge.azurecr.io/web:latest
