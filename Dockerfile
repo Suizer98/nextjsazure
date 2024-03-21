@@ -15,4 +15,6 @@ ENV PATH=/usr/local/node_modules/.bin:$PATH
 WORKDIR /usr/local/app
 COPY . .
 
+EXPOSE 8000
+
 CMD ["npm", "run", "dev"]
