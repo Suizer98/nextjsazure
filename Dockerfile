@@ -6,9 +6,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /usr/local
 
-COPY package.json package-lock.json* .npmrc* .
+COPY package.json .
+COPY package-lock.json* .
 
 RUN npm install && npm cache clean --force
 ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 WORKDIR /usr/local/app
+
+CMD ["prisma", "generate"]
