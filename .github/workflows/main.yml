@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Log in to Azure Container Registry
-        run: docker login realtestchallenge.azurecr.io -u realtestchallenge -p ${{ secrets.TOKEN2 }}
+        run: docker login -u realtestchallenge -p ${{ secrets.TOKEN2 }} realtestchallenge.azurecr.io
       - name: Build and push Docker image
         run: |
           echo "Building Docker image..."

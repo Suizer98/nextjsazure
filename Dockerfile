@@ -13,5 +13,6 @@ RUN npm install && npm cache clean --force
 ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 WORKDIR /usr/local/app
+COPY . .
 
-CMD ["prisma", "generate"]
+CMD ["npm", "run", "dev"]
