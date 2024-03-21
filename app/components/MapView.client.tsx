@@ -10,6 +10,11 @@ import GeoJSON from "ol/format/GeoJSON";
 import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
 
+type LayersVisible = {
+  osm: boolean;
+  vector: boolean;
+};
+
 const MapView = () => {
   const mapElementRef = useRef(null);
   // Store map and layers in state to ensure they're initialized only once
@@ -87,7 +92,7 @@ const MapView = () => {
     if (vectorLayer) vectorLayer.setVisible(layersVisible.vector);
   }, [layersVisible, osmLayer, vectorLayer]); // Depend on layersVisible and layer instances
 
-  const toggleLayerVisibility = (layer) => {
+  const toggleLayerVisibility = (layer: keyof LayersVisible) => {
     setLayersVisible((prev) => ({ ...prev, [layer]: !prev[layer] }));
   };
 
