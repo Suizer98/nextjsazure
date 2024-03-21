@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:19.03.12
+        options: --privileged
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Docker Compose
+      run: |
+        docker-compose --version
+    - name: Run tests
+      run: |
+        echo "Running test"
+        docker-compose run weddingbackendnextjs npm run format
+        docker system prune -a -f --filter "until=24h"
+
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log in to Azure Container Registry
+      run: echo ${{ secrets.TOKEN2 }} | docker login realtestchallenge.azurecr.io -u realtestchallenge --password-stdin
+    - name: Build and push Docker image
+      run: |
+        echo "Building Docker image..."
+        docker build -t realtestchallenge.azurecr.io/web:${{ github.sha }} .
+        echo "Pushing image to Azure Container Registry..."
+        docker push realtestchallenge.azurecr.io/web:${{ github.sha }}

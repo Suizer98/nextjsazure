@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  weddingbackendnextjs:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npm run dev
+    volumes:
+      - .env.local:/usr/local/app/.env.local:ro
+      - ./:/usr/local/app
+    ports:
+      - '3000:3000'
