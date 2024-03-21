@@ -41,3 +41,20 @@ SQLALCHEMY_DATABASE_URL=postgresql://
 ```
 
 You can store the env variable somewhere using .env or setting this inside your container or pipeline variables so it don't get exposed
+
+### Steps to setup Azure
+
+1. Go to Azure Portal
+2. Create a resource group
+3. Create a container registry (ACR) under same resource group
+4. Create a web service tied to that ACR
+
+---
+
+For Azure Cli:
+
+```
+az login
+az account set --subscription "<Your-Subscription-Name-Or-ID>"
+az ad sp create-for-rbac --name "<Your-Service-Principal-Name>" --role contributor --scopes /subscriptions/{SubscriptionId}/resourceGroups/<Your-Resource-Group-Name>
+```
