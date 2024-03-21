@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  weddingbackendnextjs:
+  nextjsazure:
     build:
       context: .
       dockerfile: ./Dockerfile
