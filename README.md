@@ -1,8 +1,18 @@
-# Wedding Backend Nextjs app
+# Nextjs app for Azure use
 
-This project was created for weddinginvitation frontend app.
+This is a nextjs project that consist OpenLayer Map. The main goal of
+this website is to showcase complete workflow of auto deploy
+pipeline using:
 
-Tech stacks: Netlify, Typescript Nextjs, Prisma, Render PostgreSQL
+1. Github Action pipeline
+
+2. Docker login and push to Azure Container Registry
+
+3. Deploy image as web app on Azure Web App Service
+
+Tech stacks: Vercel, Typescript Nextjs, OpenLayer, Prisma, Render PostgreSQL, Azure ACR
+
+The application is hosted on: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
 ## Available Scripts
 
@@ -11,7 +21,7 @@ In the project directory, you can run:
 ### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:8000/docs](http://localhost:8000/docs) to view it in the browser.
+Open [http://localhost:8000/](http://localhost:8000/) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -26,16 +36,8 @@ To fix all formatting and linting using `prettier`
 
 ### `Storing your postgresql password and secretkey`
 
-```
-heroku config:set SQLALCHEMY_DATABASE_URL="postgresql://{user}:pw@{hostname}.{yourhostingwebsite}.com/wedding_db_lgif" -a weddingbackend
-heroku config:set SECRETKEY=xxxx -a weddingbackend
-```
-
 ```.env
 SQLALCHEMY_DATABASE_URL=postgresql://
-SECRETKEY=xxxx
-USER=xx
-PASSWORD=xxx
 ```
 
-You can store the env variable somewhere using .env or setting this inside your heroku container so it don't get exposed
+You can store the env variable somewhere using .env or setting this inside your container or pipeline variables so it don't get exposed
