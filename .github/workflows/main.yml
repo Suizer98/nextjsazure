@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         run: |
           echo "Running test"
-          docker-compose run weddingbackendnextjs npm run format
+          docker-compose run weddingbackendnextjs npm run check
           docker system prune -a -f --filter "until=24h"
 
   build-and-push:
@@ -28,8 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Log in to Azure Container Registry
-        run: docker login -u realtestchallenge -p ${{ secrets.TOKEN2 }} realtestchallenge.azurecr.io
+        uses: azure/docker-login@v1
+        with:
+          login-server: realtestchallenge.azurecr.io
+          username: ${{ secrets.USER2 }}
+          password: ${{ secrets.TOKEN2 }}
+
       - name: Build and push Docker image
         run: |
           echo "Building Docker image..."
