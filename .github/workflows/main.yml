@@ -28,18 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
       - name: Log in to Azure Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: realtestchallenge.azurecr.io
-          username: realtestchallenge
-          password: ${{ secrets.TOKEN2 }}
-          
+        run: docker login realtestchallenge.azurecr.io -u realtestchallenge -p ${{ secrets.TOKEN2 }}
       - name: Build and push Docker image
         run: |
           echo "Building Docker image..."
           docker build -t realtestchallenge.azurecr.io/web:${{ github.sha }} .
           echo "Pushing image to Azure Container Registry..."
           docker push realtestchallenge.azurecr.io/web:${{ github.sha }}
-

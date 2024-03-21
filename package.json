@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
+    "check": "prettier --check .",
     "prebuild": "node prebuild.ts",
     "dev": "next dev -p 8000",
     "build": "next build",
