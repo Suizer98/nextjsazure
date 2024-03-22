@@ -16,6 +16,9 @@ export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [userName, setUserName] = useState("");
+  // const [isPortrait, setIsPortrait] = useState(
+  //   window.matchMedia("(orientation: portrait)").matches,
+  // );
 
   const handleLoginSuccess = (name: string) => {
     setUserName(name);
