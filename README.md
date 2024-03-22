@@ -10,9 +10,10 @@ pipeline using:
 
 3. Deploy image as web app on Azure Web App Service
 
-Tech stacks: Vercel, Typescript Nextjs, OpenLayer, Prisma, Render PostgreSQL, Azure ACR
+Tech stacks: Vercel, Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database/Render PostgreSQL
 
 The application is hosted on: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+The dev site is hosted on: [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
 ## Available Scripts
 
