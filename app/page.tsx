@@ -17,7 +17,7 @@ export default function Home() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [userName, setUserName] = useState("");
 
-  const handleLoginSuccess = (name) => {
+  const handleLoginSuccess = (name: string) => {
     setUserName(name);
     setShowLoginForm(false); // Close login form upon successful login
     setShowForm(false); // Ensure the register form is also not shown

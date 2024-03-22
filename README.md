@@ -34,13 +34,33 @@ To install all dependencies from `package.json`
 
 To fix all formatting and linting using `prettier`
 
-### `Storing your postgresql password and secretkey`
+### Storing your database password and secretkey
 
 ```.env
 SQLALCHEMY_DATABASE_URL=postgresql://
 ```
 
 You can store the env variable somewhere using .env or setting this inside your container or pipeline variables so it don't get exposed
+
+### Database connection
+
+In this project we use Prisma ORM to talk with database:
+
+```
+npx prisma init
+npx prisma generate
+npx prisma migrate dev
+```
+
+### Running inside docker container
+
+Must have wsl2 and Docker Desktop installed:
+
+```
+docker-compose up --build
+docker exec weddingbackendnextjs-nextjsazure-1 npx prisma generate
+docker exec weddingbackendnextjs-nextjsazure-1 npm run format
+```
 
 ### Steps to setup Azure
 

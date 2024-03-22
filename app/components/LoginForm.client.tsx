@@ -1,11 +1,16 @@
 // components/LoginForm.client.js
 import { useState } from "react";
 
-export default function LoginForm({ onClose, onLoginSuccess }) {
+interface LoginFormProps {
+  onClose: () => void;
+  onLoginSuccess: (name: string) => void;
+}
+
+export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
     const response = await fetch("/api/login", {
       method: "POST",

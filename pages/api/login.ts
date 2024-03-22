@@ -1,14 +1,17 @@
 // pages/api/login.js
 import { PrismaClient } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs"; // Assuming passwords are hashed with bcryptjs
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === "POST") {
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({ where: { email } });
-    console.log(email, password);
 
     if (user && bcrypt.compareSync(password, user.passwordHash)) {
       // Authentication successful
