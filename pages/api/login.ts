@@ -11,6 +11,7 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const { email, password } = req.body;
+    //@ts-ignore
     const user = await (prisma as any).user.findUnique({ where: { email } });
 
     if (user && bcrypt.compareSync(password, user.passwordHash)) {

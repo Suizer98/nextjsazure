@@ -14,6 +14,7 @@ export default async function handler(
     try {
       const passwordHash = bcrypt.hashSync(password, 10); // Hash the password
       // Creating a new user
+      //@ts-ignore
       const newUser = await (prisma as any).user.create({
         data: {
           email,
