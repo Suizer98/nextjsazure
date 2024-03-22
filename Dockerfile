@@ -22,6 +22,5 @@ EXPOSE 8000 2222
 
 RUN npx prisma generate
 
-ENTRYPOINT [ "./entrypoint.sh" ] 
-
+CMD ["./entrypoint.sh"]
 # CMD ["npm", "run", "dev"]
