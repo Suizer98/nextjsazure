@@ -8,10 +8,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
+//datasource db {
+//  provider = "sqlserver"
+//  url      = env("DATABASE_URL")
+// shadowDatabaseUrl = env("SDATABASE_URL")
+//}
+
 datasource db {
   provider = "sqlserver"
-  url      = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SDATABASE_URL")
+  url      = env("APPSETTING_DATABASE_URL")
+  shadowDatabaseUrl = env("APPSETTING_SDATABASE_URL")
 }
 
 model User {

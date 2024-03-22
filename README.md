@@ -12,6 +12,8 @@ pipeline using:
 
 4. To form connection between Azure services (Azure SQL Server)
 
+In future, will migrate to free database instance like Render
+
 Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database, Vercel
 
 The application is hosted on: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
@@ -83,3 +85,8 @@ az login
 az account set --subscription "<Your-Subscription-Name-Or-ID>"
 az ad sp create-for-rbac --name "<Your-Service-Principal-Name>" --role contributor --scopes /subscriptions/{SubscriptionId}/resourceGroups/<Your-Resource-Group-Name>
 ```
+
+### Connect to Azure Web App SSH
+
+Follow the Dockerfile configuration, then go to:
+https://learn.microsoft.com/en-gb/azure/app-service/configure-custom-container?pivots=container-linux&tabs=debian#enable-ssh
