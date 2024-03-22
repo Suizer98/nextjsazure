@@ -5,10 +5,12 @@ interface FillFormProps {
   onClose: () => void;
 }
 
-export default function FillForm({ onClose }: FillFormProps) {
+export default function FillForm(props: FillFormProps) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const onClose = props.onClose;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,7 +21,7 @@ export default function FillForm({ onClose }: FillFormProps) {
       body: JSON.stringify({
         email,
         name,
-        passwordHash: password, // Note: Ensure your backend appropriately hashes this password before storing it
+        password: password, // Note: Ensure your backend appropriately hashes this password before storing it
       }),
     });
 

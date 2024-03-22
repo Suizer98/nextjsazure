@@ -1,6 +1,7 @@
 // pages/api/users/index.tsx
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -9,8 +10,9 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === "POST") {
-    const { email, name, passwordHash } = req.body;
+    const { email, name, password } = req.body;
     try {
+      const passwordHash = bcrypt.hashSync(password, 10); // Hash the password
       // Creating a new user
       const newUser = await prisma.user.create({
         data: {
