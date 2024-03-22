@@ -2,10 +2,12 @@ FROM node
 
 RUN apt-get update && apt-get install -y \
     default-jre \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd \
+    && rm -rf /var/lib/apt/lists/*
+COPY sshd_config /etc/ssh/
 
 WORKDIR /usr/local
-
 COPY package.json .
 COPY package-lock.json* .
 
@@ -14,8 +16,7 @@ ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 WORKDIR /usr/local/app
 COPY . .
-
-RUN chmod +x /usr/local/app/entrypoint.sh
+RUN chmod u+x ./entrypoint.sh
 
 EXPOSE 8000 2222
 
