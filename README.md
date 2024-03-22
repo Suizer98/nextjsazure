@@ -6,13 +6,16 @@ pipeline using:
 
 1. Github Action pipeline
 
-2. Docker login and push to Azure Container Registry
+2. Docker login and push image to Azure Container Registry
 
-3. Deploy image as web app on Azure Web App Service
+3. Deploy image as web app service on Azure Web App Service
 
-Tech stacks: Vercel, Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database/Render PostgreSQL
+4. To form connection between Azure services (Azure SQL Server)
+
+Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database, Vercel
 
 The application is hosted on: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+
 The dev site is hosted on: [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
 ## Available Scripts
@@ -38,7 +41,8 @@ To fix all formatting and linting using `prettier`
 ### Storing your database password and secretkey
 
 ```.env
-SQLALCHEMY_DATABASE_URL=postgresql://
+DATABASE_URL=sqlserver://
+SDATABASE_URL=sqlserver:// # Shadow database for prisma migration
 ```
 
 You can store the env variable somewhere using .env or setting this inside your container or pipeline variables so it don't get exposed

@@ -14,9 +14,12 @@ ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 WORKDIR /usr/local/app
 COPY . .
+RUN chmod +x /usr/local/app/entrypoint.sh
 
-EXPOSE 8000
+EXPOSE 8000 2222
 
 RUN npx prisma generate
 
-CMD ["npm", "run", "dev"]
+ENTRYPOINT [ "./entrypoint.sh" ] 
+
+# CMD ["npm", "run", "dev"]
