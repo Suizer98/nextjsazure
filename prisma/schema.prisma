@@ -9,12 +9,35 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SDATABASE_URL")
+}
+
+model User {
+  id                  Int       @id @default(autoincrement())
+  email               String?   @unique
+  name                String?
+  passwordHash        String?   // Used for email/password auth; null for SSO users
+  ssoIdentifier       String?   // Unique ID from the SSO provider; null for email/password users
+  authenticationType  String    // e.g., "sso_google", "sso_facebook", "email_password"
+  plans               Plan[]
+}
+
+model Plan {
+  id          Int         @id @default(autoincrement())
+  userId      Int         // Foreign key to User model
+  user        User        @relation(fields: [userId], references: [id])
+  locations   Location[]
 }
 
 model Location {
-  id  Int    @id @default(autoincrement())
-  lat Float
-  lon Float
+  id          Int     @id @default(autoincrement())
+  planId      Int     // Foreign key to Plan model
+  plan        Plan    @relation(fields: [planId], references: [id])
+  lat         Float
+  lon         Float
+  name        String
+  description String?
 }
+
