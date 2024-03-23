@@ -7,7 +7,6 @@ services:
       dockerfile: ./Dockerfile
     command: npm run dev
     volumes:
-      - .env.local:/usr/local/app/.env.local:ro
       - ./:/usr/local/app
     ports:
       - "8000:8000"
