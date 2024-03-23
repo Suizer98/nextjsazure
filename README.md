@@ -16,9 +16,13 @@ In future, will migrate to free database instance like Render
 
 Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database, Vercel
 
-The application is hosted on: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+The application is hosted on:
 
-The dev site is hosted on: [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
+1. Azure Web App Service: [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+
+2. Azure Container App: [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
+
+3. dev site (no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
 ## Available Scripts
 
