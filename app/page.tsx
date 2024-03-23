@@ -1,5 +1,4 @@
 "use client";
-// Home.tsx
 import dynamic from "next/dynamic";
 import UserInteractionPanel from "./components/UserInteractionPanel";
 

@@ -1,4 +1,3 @@
-// components/FillForm.client.js or .tsx if using TypeScript
 import { useState } from "react";
 
 interface FillFormProps {

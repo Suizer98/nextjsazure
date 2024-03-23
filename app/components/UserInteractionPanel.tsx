@@ -1,8 +1,7 @@
-// UserInteractionPanel.tsx
 import React, { useState } from "react";
-import FillForm from "./components/FillForm.client";
-import LoginForm from "./components/LoginForm.client";
-import PageButton from "./components/PageButton.client";
+import LoginForm from "./Form/LoginForm.client";
+import FillForm from "./Form/FillForm.client";
+import PageButton from "./PageButton.client";
 
 const UserInteractionPanel: React.FC = ({}) => {
   const [showForm, setShowForm] = useState(false);

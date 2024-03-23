@@ -1,4 +1,3 @@
-// components/LoginForm.client.js
 import { useState } from "react";
 
 interface LoginFormProps {
