@@ -84,9 +84,17 @@ For Azure Cli:
 az login
 az account set --subscription "<Your-Subscription-Name-Or-ID>"
 az ad sp create-for-rbac --name "<Your-Service-Principal-Name>" --role contributor --scopes /subscriptions/{SubscriptionId}/resourceGroups/<Your-Resource-Group-Name>
+az webapp log tail --name <app-name> --resource-group <resource-group-name> # log
 ```
 
 ### Connect to Azure Web App SSH
 
 Follow the Dockerfile configuration, then go to:
 https://learn.microsoft.com/en-gb/azure/app-service/configure-custom-container?pivots=container-linux&tabs=debian#enable-ssh
+
+### Problem troubleshooting Azure web app linux host connecting to Azure SQL Server
+
+Many people have been facing issues establishing a connection between Azure linux hosted web app and Azure SQL database server.
+Some of the forum discussions: https://serverfault.com/questions/1104918/azure-app-service-to-sql-server-db-connection-fails-with-generic-error-occurred
+
+The alternative way is to use a Azure virtual machine instead.
