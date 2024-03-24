@@ -2,6 +2,11 @@
 
 This is a documentation on how to deploy app to Azure Ubuntu VM
 
+### Accessing the app hosted by Azure VM
+
+Application Gateway or a Load Balancer, they typically sit in front of your Azure Virtual Machines (VMs) to distribute incoming network traffic.
+By default the application is hosted on port 80, so we can just navigate to the Ip address given by the load balancer to access it.
+
 ### Creating a VM
 
 1. HTTP (port 80) and HTTPS (port 443):
