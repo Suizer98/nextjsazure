@@ -6,7 +6,7 @@
     "format": "prettier --write .",
     "check": "prettier --check .",
     "prebuild": "node prebuild.ts",
-    "dev": "next dev -p 8000",
+    "dev": "next dev -p 8000 -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

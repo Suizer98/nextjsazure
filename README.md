@@ -78,7 +78,7 @@ docker exec weddingbackendnextjs-nextjsazure-1 npm run format
 1. Go to Azure Portal
 2. Create a resource group
 3. Create a container registry (ACR) under same resource group
-4. Create a web service tied to that ACR
+4. Create a web service/container instance tied to that ACR
 
 ---
 
@@ -102,3 +102,7 @@ Many people have been facing issues establishing a connection between Azure linu
 Some of the forum discussions: https://serverfault.com/questions/1104918/azure-app-service-to-sql-server-db-connection-fails-with-generic-error-occurred
 
 The alternative way is to use a Azure virtual machine instead.
+
+### How to deploy nextjsazure to Azure Ubuntu VM
+
+If you are looking to deploy this Next.js app on an Azure Ubuntu VM, please refer to the documentation provided [here](docs/README_VM.MD).
