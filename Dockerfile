@@ -18,7 +18,7 @@ WORKDIR /usr/local/app
 COPY . .
 RUN chmod u+x ./entrypoint.sh
 
-EXPOSE 8000 2222
+EXPOSE 8000 2222 80 443
 
 RUN npx prisma generate
 

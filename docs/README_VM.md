@@ -42,8 +42,8 @@ sudo usermod -aG docker $USER
 5.  Run docker app
 
 ```
-docker pull realtestchallenge.azurecr.io/image_name:tag
-docker run --name nextjsazure -d -p 8000:8000 blabla.azurecr.io/web:latest
+docker pull realtestchallenge.azurecr.io/web:latest
+docker run --name nextjsazure -d -p 8000:8000 realtestchallenge.azurecr.io/web:latest
 docker ps
 docker logs nextjsazure
 docker stop nextjsazure
