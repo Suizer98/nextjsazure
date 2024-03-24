@@ -39,11 +39,11 @@ sudo usermod -aG docker $USER
 ```
 
 4.  Please log out of your SSH session and log back in to see if the changes take effect. After logging back in, retry the Azure ACR login command (az acr login --name <container-registry>)
-5.  Run docker app
+5.  Run docker app, you need to map right port to either 80 or 443 so it can be accessible outside vm
 
 ```
 docker pull realtestchallenge.azurecr.io/web:latest
-docker run --name nextjsazure -d -p 8000:8000 realtestchallenge.azurecr.io/web:latest
+docker run --name nextjsazure -d -p 80:8000 realtestchallenge.azurecr.io/web:latest
 docker ps
 docker logs nextjsazure
 docker stop nextjsazure

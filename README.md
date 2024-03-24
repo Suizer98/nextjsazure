@@ -18,11 +18,13 @@ Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR,
 
 The application is hosted on:
 
-1. Azure Web App Service (Production): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+1. Azure Ubuntu Virtual Machine (Production): Being that I didn't purchase domain name, lets not expose ip address here.
 
-2. Azure Container App (UAT): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
+2. Azure Web App Service (Deployment): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
-3. Vercel (dev site with no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
+3. Azure Container App (UAT): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
+
+4. Vercel (dev site with no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
 ## Available Scripts
 

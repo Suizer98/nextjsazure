@@ -57,6 +57,6 @@ jobs:
         run: az webapp restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
       - name: Restart Container Instance
         run: az container restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
-      # Comment out this part as I don't expose SSH other than Azure Shell now
-      # - name: Trigger VM to repull image and restart app
-      #   run: ssh user@20.83.146.57 'docker pull realtestchallenge.azurecr.io/web:latest && docker stop nextjsazure && docker rm nextjsazure && docker run --name nextjsazure -d -p 8000:8000 realtestchallenge.azurecr.io/web:latest'
+      - name: Trigger VM to repull image and restart app
+        run: |
+          az vm run-command invoke --resource-group cloud-shell-storage-southeastasia --name nextjsazure --command-id RunShellScript --scripts "docker stop nextjsazure && docker rm nextjsazure && docker pull realtestchallenge.azurecr.io/web:latest && docker run --name nextjsazure -d -p 80:8000 realtestchallenge.azurecr.io/web:latest"
