@@ -18,11 +18,11 @@ Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR,
 
 The application is hosted on:
 
-1. Azure Ubuntu Virtual Machine (Production): Being that I didn't purchase domain name, lets not expose ip address here.
+1. Azure Ubuntu Virtual Machine (Production, discontinued)
 
-2. Azure Web App Service (Deployment): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+2. Azure Web App Service (Production): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
-3. Azure Container App (UAT): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
+3. Azure Container App (Staging): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
 
 4. Vercel (dev site with no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
@@ -30,21 +30,27 @@ The application is hosted on:
 
 In the project directory, you can run:
 
-### `npm run dev`
+### Local development
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
+
+```
+npm install
+npm run dev
+```
+
 Open [http://localhost:8000/](http://localhost:8000/) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm install`
+### Found issues in code style?
 
-To install all dependencies from `package.json`
+To fix all formatting and linting using `prettier`:
 
-### `npm run format`
-
-To fix all formatting and linting using `prettier`
+```
+npm run format
+```
 
 ### Storing your database password and secretkey
 
@@ -71,8 +77,8 @@ Must have wsl2 and Docker Desktop installed:
 
 ```
 docker-compose up --build
-docker exec weddingbackendnextjs-nextjsazure-1 npx prisma generate
-docker exec weddingbackendnextjs-nextjsazure-1 npm run format
+docker exec nextjsazure-nextjsazure-1 npx prisma generate
+docker exec nextjsazure-nextjsazure-1 npm run format
 ```
 
 ### Steps to setup Azure
@@ -107,4 +113,4 @@ The alternative way is to use a Azure virtual machine instead.
 
 ### How to deploy nextjsazure to Azure Ubuntu VM
 
-If you are looking to deploy this Next.js app on an Azure Ubuntu VM, please refer to the documentation provided [here](docs/README_VM.MD).
+If you are looking to deploy this Next.js app on an Azure Ubuntu VM, please refer to the documentation provided [here](docs/README_VM.md).
