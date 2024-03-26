@@ -2,25 +2,25 @@
 
 This is a nextjs project that consist OpenLayer Map. The main goal of
 this website is to showcase complete workflow of auto deploy
-pipeline using:
+pipeline to Microsoft Azure platform using:
 
-1. Github Action pipeline
+1. Github Action pipeline jobs
 
 2. Docker login and push image to Azure Container Registry
 
-3. Deploy image as web app service on Azure Web App Service
+3. Deploy image as web app service on Azure Web App Service, Azure Container Instance App, Azure Ubuntu VM
 
 4. To form connection between Azure services (Azure SQL Server)
 
 In future, will migrate to free database instance like Render
 
-Tech stacks: Azure Web Service, Typescript Nextjs, OpenLayer, Prisma, Azure ACR, Azure SQL Database, Vercel
+Tech stacks: Typescript Nextjs, OpenLayer, Prisma, Vercel
 
 The application is hosted on:
 
 1. Azure Ubuntu Virtual Machine (Production, discontinued)
 
-2. Azure Web App Service (Production): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+2. Azure Web App Service (Production, discontinued): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
 3. Azure Container App (Staging): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
 
@@ -81,7 +81,7 @@ docker exec nextjsazure-nextjsazure-1 npx prisma generate
 docker exec nextjsazure-nextjsazure-1 npm run format
 ```
 
-### Steps to setup Azure
+### Steps to setup Azure functions
 
 1. Go to Azure Portal
 2. Create a resource group
@@ -90,7 +90,7 @@ docker exec nextjsazure-nextjsazure-1 npm run format
 
 ---
 
-For Azure Cli:
+You will also need to install Azure Cli to perform:
 
 ```
 az login

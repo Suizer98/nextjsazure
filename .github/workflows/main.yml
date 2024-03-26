@@ -40,7 +40,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           echo "Building Docker image..."
-          docker build -t realtestchallenge.azurecr.io/web:latest .
+          docker build -f Dockerfile-staging -t realtestchallenge.azurecr.io/web:latest .
           echo "Pushing image to Azure Container Registry..."
           docker push realtestchallenge.azurecr.io/web:latest
 
@@ -53,10 +53,10 @@ jobs:
         uses: azure/login@v1
         with:
           creds: '{"clientId":"${{ secrets.AZURE_APP_ID }}", "clientSecret":"${{ secrets.AZURE_SP_SECRET }}", "subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}", "tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
-      - name: Trigger redeployment
-        run: az webapp restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
       - name: Restart Container Instance
         run: az container restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
+      # - name: Trigger redeployment
+      #   run: az webapp restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
       # - name: Trigger VM to repull image and restart app
       #   run: |
       #     az vm run-command invoke --resource-group cloud-shell-storage-southeastasia --name nextjsazure --command-id RunShellScript --scripts "docker ps -a | grep nextjsazure && docker stop nextjsazure && docker rm nextjsazure || echo 'No existing container to stop and remove' && docker pull realtestchallenge.azurecr.io/web:latest && docker run --name nextjsazure -d -p 80:8000 realtestchallenge.azurecr.io/web:latest"

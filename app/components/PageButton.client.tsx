@@ -14,19 +14,19 @@ const PageButton: React.FC<PageButtonProps> = ({
   return (
     <>
       {userName ? (
-        <button className="absolute top-10 right-10 z-40 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <button className="absolute top-4 right-4 z-40 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded sm:top-10 sm:right-10 sm:py-2 sm:px-4">
           {userName}
         </button>
       ) : (
         <>
           <button
-            className="absolute top-10 right-40 z-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="absolute top-4 right-28 z-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded sm:top-10 sm:right-40 sm:py-2 sm:px-4"
             onClick={() => setShowLoginForm(true)}
           >
             Login
           </button>
           <button
-            className="absolute top-10 right-10 z-40 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+            className="absolute top-4 right-4 z-40 bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded sm:top-10 sm:right-10 sm:py-2 sm:px-4"
             onClick={() => setShowForm(true)}
           >
             Register

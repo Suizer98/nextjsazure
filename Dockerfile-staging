@@ -25,5 +25,5 @@ ENV ENVIRONMENT_MODE=${ENVIRONMENT_MODE}
 
 RUN npx prisma generate
 
-CMD ["./entrypoint.sh"]
+CMD ["./entrypoint-staging.sh"]
 # CMD ["npm", "run", "dev"]

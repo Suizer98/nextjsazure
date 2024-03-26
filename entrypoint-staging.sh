@@ -9,5 +9,5 @@ eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/
 # Create .env file and edit it with Nano
 printenv > .env
 
-echo "Running in development mode"
-exec npm run dev
+echo "Running in production mode"
+exec npm run vm

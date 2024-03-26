@@ -18,23 +18,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <div>
       <button
-        className="absolute top-4 left-4 z-50 bg-white border border-gray-300 rounded-md p-2"
         onClick={toggleSidebar}
+        className="absolute top-4 left-4 z-50 bg-white border border-gray-300 rounded-md p-2 flex items-center justify-center"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className={`w-6 h-6 ${sidebarExpanded ? "rotate-180" : ""}`}
+        <div
+          className={`transform transition-transform ${sidebarExpanded ? "-rotate-90" : "rotate-90"}`}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+          <div className="w-3 h-3 border-t-2 border-l-2 border-current transform rotate-45"></div>
+        </div>
       </button>
       <div
         className={`${
