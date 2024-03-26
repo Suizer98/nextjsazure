@@ -8,6 +8,8 @@ import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
 import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
+import { defaults as defaultControls } from "ol/control";
+
 import Sidebar from "./Sidebar";
 
 type LayersVisible = {
@@ -44,11 +46,14 @@ const MapView = () => {
               {
                 type: "Feature",
                 geometry: {
-                  type: "Point",
-                  coordinates: [103, 1.2],
+                  type: "LineString",
+                  coordinates: [
+                    [103.8198, 1.3521], // Singapore
+                    [116.0724, 5.9749], // Sabah, Malaysia
+                  ],
                 },
                 properties: {
-                  name: "Another Point",
+                  name: "Singapore to Sabah",
                 },
               },
             ],
@@ -65,9 +70,10 @@ const MapView = () => {
       target: mapElementRef.current,
       layers: [initialOsmLayer, initialVectorLayer],
       view: new View({
-        center: fromLonLat([105, 1.2]),
+        center: fromLonLat([107, 3.5]),
         zoom: 6,
       }),
+      controls: defaultControls({ zoom: false }),
     });
 
     setMap(initialMap);
