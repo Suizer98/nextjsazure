@@ -22,7 +22,7 @@ The application is hosted on:
 
 2. Azure Web App Service (Production, discontinued): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
-3. Azure Container App (Staging): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io:8000/)
+3. Azure Container App (Staging): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/)
 
 4. Vercel (dev site with no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 

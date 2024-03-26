@@ -45,17 +45,7 @@ const MapView = () => {
                 type: "Feature",
                 geometry: {
                   type: "Point",
-                  coordinates: [0, 0],
-                },
-                properties: {
-                  name: "Null Island",
-                },
-              },
-              {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-10.0, 10.0],
+                  coordinates: [103, 1.2],
                 },
                 properties: {
                   name: "Another Point",
@@ -75,8 +65,8 @@ const MapView = () => {
       target: mapElementRef.current,
       layers: [initialOsmLayer, initialVectorLayer],
       view: new View({
-        center: fromLonLat([0, 0]),
-        zoom: 2,
+        center: fromLonLat([105, 1.2]),
+        zoom: 6,
       }),
     });
 

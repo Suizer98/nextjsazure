@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Add custom styles for OpenLayers controls */
+.map {
+  height: 100%;
+  width: 100%;
+}

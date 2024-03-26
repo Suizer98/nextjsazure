@@ -19,15 +19,15 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div>
       <button
         onClick={toggleSidebar}
-        className="absolute top-4 left-4 z-50 bg-white border border-gray-300 rounded-md p-2 flex items-center justify-center"
+        className="absolute top-4 left-10 z-50 bg-white border border-gray-300 rounded-md p-2 flex items-center justify-center"
         aria-label="Toggle Sidebar"
       >
         {sidebarExpanded ? "▶" : "◀"}
       </button>
       <div
-        className={`${
-          sidebarExpanded ? "w-60" : "w-20"
-        } h-full bg-white shadow-md overflow-y-auto transition-all duration-500`}
+        className={`transition-all duration-500 overflow-y-auto shadow-md bg-white ${
+          sidebarExpanded ? "w-60" : "w-0"
+        } h-full z-40`}
       >
         {sidebarExpanded && (
           <div className="p-4 pt-16">
