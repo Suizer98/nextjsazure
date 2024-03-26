@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  nextjsazure:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-staging
+    command: npm run vm
+    volumes:
+      - ./:/usr/local/app
+    ports:
+      - "80:80"

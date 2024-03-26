@@ -20,12 +20,9 @@ const Sidebar: React.FC<SidebarProps> = ({
       <button
         onClick={toggleSidebar}
         className="absolute top-4 left-4 z-50 bg-white border border-gray-300 rounded-md p-2 flex items-center justify-center"
+        aria-label="Toggle Sidebar"
       >
-        <div
-          className={`transform transition-transform ${sidebarExpanded ? "-rotate-90" : "rotate-90"}`}
-        >
-          <div className="w-3 h-3 border-t-2 border-l-2 border-current transform rotate-45"></div>
-        </div>
+        {sidebarExpanded ? "▶" : "◀"}
       </button>
       <div
         className={`${

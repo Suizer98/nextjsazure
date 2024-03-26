@@ -16,7 +16,7 @@ ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 WORKDIR /usr/local/app
 COPY . .
-RUN chmod u+x ./entrypoint.sh
+RUN chmod u+x ./entrypoint-staging.sh
 
 EXPOSE 8000 2222 80 443
 

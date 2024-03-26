@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         run: |
           echo "Running test"
-          docker-compose run nextjsazure npm run check
+          docker-compose -f docker-compose-staging.yml run nextjsazure npm run check
           docker system prune -a -f --filter "until=24h"
 
   build-and-push:
