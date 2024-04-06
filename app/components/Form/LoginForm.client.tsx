@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface LoginFormProps {
   onClose: () => void;
@@ -8,6 +8,16 @@ interface LoginFormProps {
 export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn === "true") {
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        onLoginSuccess(userName);
+      }
+    }
+  }, [onLoginSuccess]);
 
   async function handleSubmit(event: any) {
     event.preventDefault();
@@ -20,6 +30,8 @@ export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
     if (response.ok) {
       const userData = await response.json();
       alert("Login successful!");
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userName", userData.name);
       onLoginSuccess(userData.name); // Pass the logged-in user's name up to the parent component.
       onClose(); // Close the form upon successful login.
     } else {
