@@ -17,7 +17,7 @@ const UserInteractionPanel: React.FC = ({}) => {
       setShowLoginForm(false);
     } else {
       // If not logged in or no stored user name, show the login form
-      setShowLoginForm(true);
+      setUserName("");
     }
   }, []);
 
@@ -31,6 +31,7 @@ const UserInteractionPanel: React.FC = ({}) => {
     <div>
       <PageButton
         userName={userName}
+        setUserName={setUserName}
         setShowLoginForm={setShowLoginForm}
         setShowForm={setShowForm}
       />
