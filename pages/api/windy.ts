@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const filePath = path.join(process.cwd(), "data", "time_step_0.json");
+const filePath = path.join(process.cwd(), "data", "time_step_0_small.json");
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
