@@ -9,12 +9,14 @@ import GeoJSON from "ol/format/GeoJSON";
 import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
 import { defaults as defaultControls } from "ol/control";
+import { WindLayer } from "ol-wind";
 
 import Sidebar from "./Sidebar";
 
 type LayersVisible = {
   osm: boolean;
   vector: boolean;
+  wind: boolean;
 };
 
 const MapView = () => {
@@ -25,10 +27,13 @@ const MapView = () => {
   const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null);
   const [vectorLayer, setVectorLayer] =
     useState<VectorLayer<VectorSource> | null>(null);
+  const [windLayer, setWindLayer] = useState<any>();
   const [layersVisible, setLayersVisible] = useState<LayersVisible>({
     osm: true,
     vector: true,
+    wind: true,
   });
+  const [windData, setWindData] = useState<any>(null);
 
   useEffect(() => {
     if (!mapElementRef.current) return;
@@ -66,9 +71,20 @@ const MapView = () => {
       }),
     });
 
+    const initialWindLayer = new WindLayer(windData, {
+      forceRender: false,
+      windOptions: {
+        velocityScale: 1 / 100,
+        paths: 5000,
+        colorScale: (velocity: number) => "#C71585",
+        width: 3,
+        generateParticleOption: false,
+      },
+    });
+
     const initialMap = new Map({
       target: mapElementRef.current,
-      layers: [initialOsmLayer, initialVectorLayer],
+      layers: [initialOsmLayer, initialVectorLayer, initialWindLayer],
       view: new View({
         center: fromLonLat([107, 3.5]),
         zoom: 6,
@@ -79,14 +95,16 @@ const MapView = () => {
     setMap(initialMap);
     setOsmLayer(initialOsmLayer);
     setVectorLayer(initialVectorLayer);
+    setWindLayer(initialWindLayer);
 
     return () => initialMap.setTarget(undefined);
-  }, []);
+  }, [windData]);
 
   useEffect(() => {
     if (osmLayer) osmLayer.setVisible(layersVisible.osm);
     if (vectorLayer) vectorLayer.setVisible(layersVisible.vector);
-  }, [layersVisible, osmLayer, vectorLayer]);
+    if (windLayer) windLayer.setVisible(layersVisible.wind);
+  }, [layersVisible, osmLayer, vectorLayer, windLayer]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!sidebarExpanded);
@@ -99,6 +117,8 @@ const MapView = () => {
         sidebarExpanded={sidebarExpanded}
         layersVisible={layersVisible}
         setLayersVisible={setLayersVisible}
+        windData={windData}
+        setWindData={setWindData}
       />
       <div
         ref={mapElementRef}

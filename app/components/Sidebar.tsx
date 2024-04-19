@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type SidebarProps = {
   toggleSidebar: () => void;
   sidebarExpanded: boolean;
-  layersVisible: { osm: boolean; vector: boolean };
+  layersVisible: { osm: boolean; vector: boolean; wind: boolean };
   setLayersVisible: React.Dispatch<
-    React.SetStateAction<{ osm: boolean; vector: boolean }>
+    React.SetStateAction<{ osm: boolean; vector: boolean; wind: boolean }>
   >;
+  windData: any;
+  setWindData: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -14,7 +16,32 @@ const Sidebar: React.FC<SidebarProps> = ({
   sidebarExpanded,
   layersVisible,
   setLayersVisible,
+  windData,
+  setWindData,
 }) => {
+  useEffect(() => {
+    if (layersVisible.wind && !windData) {
+      fetchWindData();
+    }
+  }, [layersVisible.wind]);
+
+  const fetchWindData = async () => {
+    try {
+      const response = await fetch(`api/windy`);
+      const data = await response.json();
+      setWindData(data);
+    } catch (error) {
+      console.error("Error fetching wind data:", error);
+    }
+  };
+
+  const handleWindLayerToggle = () => {
+    setLayersVisible((prev) => ({ ...prev, wind: !prev.wind }));
+    if (!layersVisible.wind && !windData) {
+      fetchWindData();
+    }
+  };
+
   return (
     <div>
       <button
@@ -80,6 +107,21 @@ const Sidebar: React.FC<SidebarProps> = ({
                       vector: !prev.vector,
                     }))
                   }
+                  className="toggle-checkbox"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="wind-toggle"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Wind Layer
+                </label>
+                <input
+                  id="wind-toggle"
+                  type="checkbox"
+                  checked={layersVisible.wind}
+                  onChange={handleWindLayerToggle}
                   className="toggle-checkbox"
                 />
               </div>
