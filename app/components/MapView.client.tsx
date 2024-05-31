@@ -54,7 +54,7 @@ const MapView = () => {
       windOptions: {
         velocityScale: 1 / 100,
         paths: 5000,
-        colorScale: (velocity: number) => "#FF4500",
+        colorScale: (velocity: number) => "#589CD5",
         width: 3,
         generateParticleOption: false,
       },
