@@ -14,7 +14,7 @@ pipeline to Microsoft Azure platform using:
 
 In future, will migrate to free database instance like Render
 
-Tech stacks: Typescript Nextjs, OpenLayer, Prisma, Vercel
+Tech stacks: [Typescript Nextjs, Azure, OpenLayer, Prisma, Vercel, Ubuntu VM](https://skillicons.dev/icons?i=ts,next,azure,prisma,vercel,ubuntu)
 
 The application is hosted on:
 
