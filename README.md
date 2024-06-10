@@ -14,7 +14,7 @@ pipeline to Microsoft Azure platform using:
 
 In future, will migrate to free database instance like Render
 
-Tech stacks: ![Tech stacks](https://skillicons.dev/icons?i=ts,next,azure,tailwind,prisma,vercel,ubuntu,bash,docker,npm,githubactions)
+Tech stacks: ![Tech stacks](https://skillicons.dev/icons?i=ts,next,tailwind,prisma,azure,githubactions,docker,ubuntu,bash,vercel,npm,mysql)
 
 The application is hosted on:
 
