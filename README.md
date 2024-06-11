@@ -12,17 +12,17 @@ pipeline to Microsoft Azure platform using:
 
 4. To form connection between Azure services (Azure SQL Server)
 
-In future, will migrate to free database instance like Render
+## Tech stacks:
 
-Tech stacks: ![Tech stacks](https://skillicons.dev/icons?i=ts,next,tailwind,prisma,azure,githubactions,docker,ubuntu,bash,vercel,npm,mysql)
+![Tech stacks](https://skillicons.dev/icons?i=ts,next,tailwind,prisma,azure,githubactions,docker,ubuntu,bash,vercel,npm,mysql)
 
 The application is hosted on:
 
 1. Azure Ubuntu Virtual Machine (Production, discontinued)
 
-2. Azure Web App Service (Production, discontinued): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
+2. Azure Web App Service (Staging, discontinued): [https://nextjsazure.azurewebsites.net/](https://nextjsazure.azurewebsites.net/)
 
-3. Azure Container App (Staging): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/)
+3. Azure Container App (Staging, discontinued): [http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/](http://suizer.bqazfuf4fmdfdjgr.southeastasia.azurecontainer.io/)
 
 4. Vercel (dev site with no database connection): [https://nextjsazure.vercel.app/](https://nextjsazure.vercel.app/)
 
