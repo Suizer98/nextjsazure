@@ -1,6 +1,6 @@
 # Nextjs app for Azure use
 
-This is a nextjs project that consist OpenLayer Map. The main goal of
+This is a nextjs project consisting a OpenLayer Map that show beautiful windy style layer. The main goal of
 this website is to showcase complete workflow of auto deploy
 pipeline to Microsoft Azure platform using:
 
