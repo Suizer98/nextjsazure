@@ -33,16 +33,16 @@ jobs:
   #     - name: Log in to Azure Container Registry
   #       uses: docker/login-action@v1
   #       with:
-  #         registry: realtestchallenge.azurecr.io
+  #         registry: ${{ secrets.AZURE_CR }}
   #         username: ${{ secrets.USER2 }}
   #         password: ${{ secrets.TOKEN2 }}
 
   #     - name: Build and push Docker image
   #       run: |
   #         echo "Building Docker image..."
-  #         docker build -f Dockerfile-staging -t realtestchallenge.azurecr.io/web:latest .
+  #         docker build -f Dockerfile-staging -t ${{ secrets.AZURE_CR }}/web:latest .
   #         echo "Pushing image to Azure Container Registry..."
-  #         docker push realtestchallenge.azurecr.io/web:latest
+  #         docker push ${{ secrets.AZURE_CR }}/web:latest
 
   # deploy:
   #   needs: build-and-push
@@ -54,9 +54,9 @@ jobs:
   #       with:
   #         creds: '{"clientId":"${{ secrets.AZURE_APP_ID }}", "clientSecret":"${{ secrets.AZURE_SP_SECRET }}", "subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}", "tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
   #     - name: Restart Container Instance
-  #       run: az container restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
-  # - name: Trigger redeployment
-  #   run: az webapp restart --name nextjsazure --resource-group cloud-shell-storage-southeastasia
-  # - name: Trigger VM to repull image and restart app
-  #   run: |
-  #     az vm run-command invoke --resource-group cloud-shell-storage-southeastasia --name nextjsazure --command-id RunShellScript --scripts "docker ps -a | grep nextjsazure && docker stop nextjsazure && docker rm nextjsazure || echo 'No existing container to stop and remove' && docker pull realtestchallenge.azurecr.io/web:latest && docker run --name nextjsazure -d -p 80:8000 realtestchallenge.azurecr.io/web:latest"
+  #       run: az container restart --name nextjsazure --resource-group ${{ secrets.AZURE_RG }}
+  #     - name: Trigger redeployment
+  #       run: az webapp restart --name nextjsazure --resource-group ${{ secrets.AZURE_RG }}
+  #     - name: Trigger VM to repull image and restart app
+  #       run: |
+  #         az vm run-command invoke --resource-group ${{ secrets.AZURE_RG }} --name nextjsazure --command-id RunShellScript --scripts "docker ps -a | grep nextjsazure && docker stop nextjsazure && docker rm nextjsazure || echo 'No existing container to stop and remove' && docker pull ${{ secrets.AZURE_CR }}/web:latest && docker run --name nextjsazure -d -p 80:8000 ${{ secrets.AZURE_CR }}/web:latest"
