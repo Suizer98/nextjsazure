@@ -1,18 +1,15 @@
 // pages/api/users/index.tsx
-import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  if (req.method === "POST") {
-    const { email, name, password } = req.body;
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
+    const { email, name, password } = req.body
     try {
-      const passwordHash = bcrypt.hashSync(password, 10); // Hash the password
+      const passwordHash = bcrypt.hashSync(password, 10) // Hash the password
       // Creating a new user
       //@ts-ignore
       const newUser = await (prisma as any).user.create({
@@ -20,26 +17,26 @@ export default async function handler(
           email,
           name,
           passwordHash,
-          authenticationType: "email_password", // Assuming authenticationType is set as "email_password" for POST requests
-        },
-      });
-      return res.status(201).json(newUser);
+          authenticationType: 'email_password' // Assuming authenticationType is set as "email_password" for POST requests
+        }
+      })
+      return res.status(201).json(newUser)
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ error: "Failed to create user" });
+      console.log(error)
+      return res.status(500).json({ error: 'Failed to create user' })
     }
-  } else if (req.method === "GET") {
+  } else if (req.method === 'GET') {
     // Listing all users
     try {
-      const users = await prisma.user.findMany();
-      return res.status(200).json(users);
+      const users = await prisma.user.findMany()
+      return res.status(200).json(users)
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ error: "Failed to retrieve users" });
+      console.log(error)
+      return res.status(500).json({ error: 'Failed to retrieve users' })
     }
   } else {
     // Handling unsupported methods
-    res.setHeader("Allow", ["POST", "GET"]);
-    return res.status(405).json({ error: "Method Not Allowed" });
+    res.setHeader('Allow', ['POST', 'GET'])
+    return res.status(405).json({ error: 'Method Not Allowed' })
   }
 }

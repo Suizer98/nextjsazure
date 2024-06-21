@@ -1,10 +1,12 @@
-"use client";
-import dynamic from "next/dynamic";
-import UserInteractionPanel from "./components/UserInteractionPanel";
+'use client'
 
-const Map = dynamic(() => import("./components/MapView.client"), {
-  ssr: false,
-});
+import dynamic from 'next/dynamic'
+
+import UserInteractionPanel from './components/UserInteractionPanel'
+
+const Map = dynamic(() => import('./components/MapView.client'), {
+  ssr: false
+})
 
 export default function Home() {
   return (
@@ -12,5 +14,5 @@ export default function Home() {
       <UserInteractionPanel />
       <Map />
     </div>
-  );
+  )
 }

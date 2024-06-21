@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react'
 
 interface PageButtonProps {
-  userName: string;
-  setUserName: (userName: string) => void;
-  setShowLoginForm: (value: boolean) => void;
-  setShowForm: (value: boolean) => void;
+  userName: string
+  setUserName: (userName: string) => void
+  setShowLoginForm: (value: boolean) => void
+  setShowForm: (value: boolean) => void
 }
 
 const PageButton: React.FC<PageButtonProps> = ({
   userName,
   setUserName,
   setShowLoginForm,
-  setShowForm,
+  setShowForm
 }) => {
   const handleSignOut = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userName");
-    setUserName("");
-    alert("Signed out!");
-  };
+    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('userName')
+    setUserName('')
+    alert('Signed out!')
+  }
 
   return (
     <>
@@ -51,7 +51,7 @@ const PageButton: React.FC<PageButtonProps> = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default PageButton;
+export default PageButton

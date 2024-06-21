@@ -1,92 +1,91 @@
-import React, { useEffect, useRef, useState } from "react";
-import "ol/ol.css";
-import Map from "ol/Map";
-import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import VectorTileLayer from "ol/layer/VectorTile";
-import VectorTileSource from "ol/source/VectorTile";
-import MVT from "ol/format/MVT";
-import OSM from "ol/source/OSM";
-import { fromLonLat } from "ol/proj";
-import { defaults as defaultControls } from "ol/control";
-import { WindLayer } from "ol-wind";
+import { WindLayer } from 'ol-wind'
+import Map from 'ol/Map'
+import View from 'ol/View'
+import { defaults as defaultControls } from 'ol/control'
+import MVT from 'ol/format/MVT'
+import TileLayer from 'ol/layer/Tile'
+import VectorTileLayer from 'ol/layer/VectorTile'
+import 'ol/ol.css'
+import { fromLonLat } from 'ol/proj'
+import OSM from 'ol/source/OSM'
+import VectorTileSource from 'ol/source/VectorTile'
+import React, { useEffect, useRef, useState } from 'react'
 
-import Sidebar from "./Sidebar";
+import Sidebar from './Sidebar'
 
 type LayersVisible = {
-  osm: boolean;
-  vector: boolean;
-  wind: boolean;
-};
+  osm: boolean
+  vector: boolean
+  wind: boolean
+}
 
 const MapView = () => {
-  const mapElementRef = useRef(null);
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
-  const [map, setMap] = useState<Map | null>(null);
-  const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null);
-  const [vectorTileLayer, setVectorTileLayer] =
-    useState<VectorTileLayer | null>(null);
-  const [windLayer, setWindLayer] = useState<any>(null);
+  const mapElementRef = useRef(null)
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  const [sidebarExpanded, setSidebarExpanded] = useState(false)
+  const [map, setMap] = useState<Map | null>(null)
+  const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null)
+  const [vectorTileLayer, setVectorTileLayer] = useState<VectorTileLayer | null>(null)
+  const [windLayer, setWindLayer] = useState<any>(null)
   const [layersVisible, setLayersVisible] = useState<LayersVisible>({
     osm: true,
     vector: true,
-    wind: true,
-  });
-  const [windData, setWindData] = useState<any>(null);
+    wind: true
+  })
+  const [windData, setWindData] = useState<any>(null)
 
   useEffect(() => {
-    if (!mapElementRef.current) return;
+    if (!mapElementRef.current) return
 
     const initialOsmLayer = new TileLayer({
-      source: new OSM(),
-    });
+      source: new OSM()
+    })
 
     const initialVectorTileLayer = new VectorTileLayer({
       source: new VectorTileSource({
         format: new MVT(),
-        url: "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.pbf",
-      }),
-    });
+        url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.pbf'
+      })
+    })
 
     const initialWindLayer = new WindLayer(windData, {
       forceRender: false,
       windOptions: {
-        velocityScale: 1 / 100,
+        velocityScale: 1 / 150,
         paths: 5000,
-        colorScale: (velocity: number) => "#589CD5",
+        colorScale: (velocity: number) => '#0D8ED8',
         width: 3,
-        generateParticleOption: false,
-      },
-    });
+        generateParticleOption: false
+      }
+    })
 
     const initialMap = new Map({
       target: mapElementRef.current,
       layers: [initialOsmLayer, initialVectorTileLayer, initialWindLayer],
       view: new View({
         center: fromLonLat([103.5, 1.5]),
-        zoom: 8,
+        zoom: 8
       }),
-      controls: defaultControls({ zoom: false }),
-    });
+      controls: defaultControls({ zoom: false })
+    })
 
-    setMap(initialMap);
-    setOsmLayer(initialOsmLayer);
-    setVectorTileLayer(initialVectorTileLayer);
-    setWindLayer(initialWindLayer);
+    setMap(initialMap)
+    setOsmLayer(initialOsmLayer)
+    setVectorTileLayer(initialVectorTileLayer)
+    setWindLayer(initialWindLayer)
 
-    return () => initialMap.setTarget(undefined);
-  }, [windData]);
+    return () => initialMap.setTarget(undefined)
+  }, [windData])
 
   useEffect(() => {
-    if (osmLayer) osmLayer.setVisible(layersVisible.osm);
-    if (vectorTileLayer) vectorTileLayer.setVisible(layersVisible.vector);
-    if (windLayer) windLayer.setVisible(layersVisible.wind);
-  }, [layersVisible, osmLayer, vectorTileLayer, windLayer]);
+    if (osmLayer) osmLayer.setVisible(layersVisible.osm)
+    if (vectorTileLayer) vectorTileLayer.setVisible(layersVisible.vector)
+    if (windLayer) windLayer.setVisible(layersVisible.wind)
+  }, [layersVisible, osmLayer, vectorTileLayer, windLayer])
 
   const toggleSidebar = () => {
-    setSidebarExpanded(!sidebarExpanded);
-  };
+    setSidebarExpanded(!sidebarExpanded)
+  }
 
   return (
     <div className="relative flex h-screen">
@@ -98,13 +97,9 @@ const MapView = () => {
         windData={windData}
         setWindData={setWindData}
       />
-      <div
-        ref={mapElementRef}
-        className="flex-grow"
-        style={{ height: "100%" }}
-      ></div>
+      <div ref={mapElementRef} className="flex-grow" style={{ height: '100%' }}></div>
     </div>
-  );
-};
+  )
+}
 
-export default MapView;
+export default MapView

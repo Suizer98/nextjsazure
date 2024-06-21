@@ -1,41 +1,41 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react'
 
 interface LoginFormProps {
-  onClose: () => void;
-  onLoginSuccess: (name: string) => void;
+  onClose: () => void
+  onLoginSuccess: (name: string) => void
 }
 
 export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn === "true") {
-      const userName = localStorage.getItem("userName");
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
+    if (isLoggedIn === 'true') {
+      const userName = localStorage.getItem('userName')
       if (userName) {
-        onLoginSuccess(userName);
+        onLoginSuccess(userName)
       }
     }
-  }, [onLoginSuccess]);
+  }, [onLoginSuccess])
 
   async function handleSubmit(event: any) {
-    event.preventDefault();
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    event.preventDefault()
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
 
     if (response.ok) {
-      const userData = await response.json();
-      alert("Login successful!");
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userName", userData.name);
-      onLoginSuccess(userData.name); // Pass the logged-in user's name up to the parent component.
-      onClose(); // Close the form upon successful login.
+      const userData = await response.json()
+      alert('Login successful!')
+      localStorage.setItem('isLoggedIn', 'true')
+      localStorage.setItem('userName', userData.name)
+      onLoginSuccess(userData.name) // Pass the logged-in user's name up to the parent component.
+      onClose() // Close the form upon successful login.
     } else {
-      alert("Failed to login.");
+      alert('Failed to login.')
     }
   }
 
@@ -45,10 +45,7 @@ export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
         <h2 className="text-xl font-bold mb-4">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
             </label>
             <input
@@ -61,10 +58,7 @@ export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
             />
           </div>
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
             <input
@@ -94,5 +88,5 @@ export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
         </form>
       </div>
     </div>
-  );
+  )
 }

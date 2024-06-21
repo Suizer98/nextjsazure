@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   nextjsazure:
@@ -9,4 +9,4 @@ services:
     volumes:
       - ./:/usr/local/app
     ports:
-      - "8000:8000"
+      - '8000:8000'

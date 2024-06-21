@@ -18,11 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
 
@@ -36,4 +32,12 @@ body {
 .map {
   height: 100%;
   width: 100%;
+}
+
+.custom-bottom-left-control {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  top: auto !important;
+  right: auto !important;
 }
