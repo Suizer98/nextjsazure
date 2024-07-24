@@ -2,15 +2,19 @@
 
 This is a nextjs project consisting a OpenLayer Map that show beautiful windy style layer. The main goal of
 this website is to showcase complete workflow of auto deploy
-pipeline to Microsoft Azure platform using:
+pipeline using Github Actions to Microsoft Azure platform.
 
-1. Github Action pipeline jobs
+Two approaches were practiced:
 
-2. Docker login and push image to Azure Container Registry
+1. **IaaS Approach using Azure Virtual Machines**:
+   - Deploy the application on an Azure Ubuntu Virtual Machine.
+   - Manage the entire VM, including Docker containers, ports, application dependencies.
+   - Suitable for scenarios requiring deep customisation and control over the server environment.
 
-3. Deploy image as web app service on Azure Web App Service, Azure Container Instance App, Azure Ubuntu VM
-
-4. To form connection between Azure services (Azure SQL Server)
+2. **PaaS Approach using Azure Web App Service and Azure Container Apps**:
+   - Deploy the application using Azure Web App Service for managed hosting.
+   - Utilize Azure Container Instances to deploy the Docker image from Container Registry.
+   - Simplifies deployment and management with less overhead.
 
 ## Tech stacks:
 
