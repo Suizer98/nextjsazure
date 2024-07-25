@@ -7,6 +7,7 @@ pipeline using Github Actions to Microsoft Azure platform.
 Two approaches were practiced:
 
 1. **IaaS Approach using Azure Virtual Machines**:
+
    - Deploy the application on an Azure Ubuntu Virtual Machine.
    - Manage the entire VM, including Docker containers, ports, application dependencies.
    - Suitable for scenarios requiring deep customisation and control over the server environment.
