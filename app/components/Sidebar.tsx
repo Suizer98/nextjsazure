@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         className="absolute top-4 left-4 z-50 bg-white border border-gray-300 rounded-md p-2 flex items-center justify-center"
         aria-label="Toggle Sidebar"
       >
-        {sidebarExpanded ? '▶' : '◀'}
+        {sidebarExpanded ? '<' : '>'}
       </Button>
       <div
         className={`transition-all duration-500 overflow-y-auto shadow-md bg-white ${

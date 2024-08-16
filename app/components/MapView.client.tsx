@@ -19,10 +19,13 @@ type LayersVisible = {
   wind: boolean
 }
 
-const MapView = () => {
+type MapViewProps = {
+  sidebarExpanded: boolean
+  toggleSidebar: () => void
+}
+
+const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => {
   const mapElementRef = useRef(null)
-  const sidebarRef = useRef<HTMLDivElement>(null)
-  const [sidebarExpanded, setSidebarExpanded] = useState(false)
   const [map, setMap] = useState<Map | null>(null)
   const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null)
   const [vectorTileLayer, setVectorTileLayer] = useState<VectorTileLayer | null>(null)
@@ -83,12 +86,9 @@ const MapView = () => {
     if (windLayer) windLayer.setVisible(layersVisible.wind)
   }, [layersVisible, osmLayer, vectorTileLayer, windLayer])
 
-  const toggleSidebar = () => {
-    setSidebarExpanded(!sidebarExpanded)
-  }
-
   return (
     <div className="relative flex h-screen">
+      {/* Sidebar */}
       <Sidebar
         toggleSidebar={toggleSidebar}
         sidebarExpanded={sidebarExpanded}
