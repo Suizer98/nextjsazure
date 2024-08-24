@@ -1,3 +1,4 @@
+import { Button } from '@nextui-org/react'
 import React from 'react'
 
 interface PageButtonProps {
@@ -23,31 +24,20 @@ const PageButton: React.FC<PageButtonProps> = ({
   return (
     <>
       {userName ? (
-        <div className="absolute top-4 right-4 z-40">
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded sm:py-2 sm:px-4">
-            {userName}
-          </button>
-          <button
-            onClick={handleSignOut}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded ml-2 sm:ml-4 sm:py-2 sm:px-4"
-          >
+        <div className="absolute top-4 right-4 z-40 flex space-x-4">
+          <Button color="success">{userName}</Button>
+          <Button color="error" onClick={handleSignOut}>
             Sign Out
-          </button>
+          </Button>
         </div>
       ) : (
-        <div className="absolute top-4 right-4 z-40">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded sm:py-2 sm:px-4"
-            onClick={() => setShowLoginForm(true)}
-          >
+        <div className="absolute top-4 right-4 z-40 flex space-x-4">
+          <Button color="primary" onClick={() => setShowLoginForm(true)}>
             Login
-          </button>
-          <button
-            className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded ml-2 sm:ml-4 sm:py-2 sm:px-4"
-            onClick={() => setShowForm(true)}
-          >
+          </Button>
+          <Button color="secondary" onClick={() => setShowForm(true)}>
             Register
-          </button>
+          </Button>
         </div>
       )}
     </>

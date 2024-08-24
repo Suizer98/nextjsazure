@@ -1,3 +1,4 @@
+import { Button, Input } from '@nextui-org/react'
 import { useEffect, useState } from 'react'
 
 interface LoginFormProps {
@@ -48,42 +49,33 @@ export default function LoginForm({ onClose, onLoginSuccess }: LoginFormProps) {
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
             </label>
-            <input
+            <Input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              fullWidth
             />
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
-            <input
+            <Input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              fullWidth
             />
           </div>
           <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={onClose}
-              className="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded"
-            >
+            <Button color="default" onPress={onClose}>
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Login
-            </button>
+            </Button>
+            <Button type="submit">Login</Button>
           </div>
         </form>
       </div>
