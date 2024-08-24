@@ -26,7 +26,7 @@ const PageButton: React.FC<PageButtonProps> = ({
       {userName ? (
         <div className="absolute top-4 right-4 z-40 flex space-x-4">
           <Button color="success">{userName}</Button>
-          <Button color="error" onClick={handleSignOut}>
+          <Button color="danger" onClick={handleSignOut}>
             Sign Out
           </Button>
         </div>
