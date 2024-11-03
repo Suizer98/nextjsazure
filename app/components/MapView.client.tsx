@@ -2,13 +2,13 @@ import { WindLayer } from 'ol-wind'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import { defaults as defaultControls } from 'ol/control'
-import MVT from 'ol/format/MVT'
+import GeoJSON from 'ol/format/GeoJSON'
 import TileLayer from 'ol/layer/Tile'
-import VectorTileLayer from 'ol/layer/VectorTile'
+import VectorLayer from 'ol/layer/Vector'
 import 'ol/ol.css'
 import { fromLonLat } from 'ol/proj'
 import OSM from 'ol/source/OSM'
-import VectorTileSource from 'ol/source/VectorTile'
+import VectorSource from 'ol/source/Vector'
 import React, { useEffect, useRef, useState } from 'react'
 
 import Sidebar from './Sidebar'
@@ -28,7 +28,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
   const mapElementRef = useRef(null)
   const [map, setMap] = useState<Map | null>(null)
   const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null)
-  const [vectorTileLayer, setVectorTileLayer] = useState<VectorTileLayer | null>(null)
+  const [vectorLayer, setVectorLayer] = useState<VectorLayer<VectorSource> | null>(null)
   const [windLayer, setWindLayer] = useState<any>(null)
   const [layersVisible, setLayersVisible] = useState<LayersVisible>({
     osm: true,
@@ -44,10 +44,10 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
       source: new OSM()
     })
 
-    const initialVectorTileLayer = new VectorTileLayer({
-      source: new VectorTileSource({
-        format: new MVT(),
-        url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.pbf'
+    const initialVectorLayer = new VectorLayer({
+      source: new VectorSource({
+        format: new GeoJSON(),
+        url: 'https://gist.githubusercontent.com/cheeaun/78bb5c3bd27759a14b3cf8e6b6568080/raw/b0ec58fb26f7aec153a1010eab88d31651721358/singapore-boundary.geojson'
       })
     })
 
@@ -64,7 +64,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
 
     const initialMap = new Map({
       target: mapElementRef.current,
-      layers: [initialOsmLayer, initialVectorTileLayer, initialWindLayer],
+      layers: [initialOsmLayer, initialVectorLayer, initialWindLayer],
       view: new View({
         center: fromLonLat([103.5, 1.5]),
         zoom: 8
@@ -74,7 +74,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
 
     setMap(initialMap)
     setOsmLayer(initialOsmLayer)
-    setVectorTileLayer(initialVectorTileLayer)
+    setVectorLayer(initialVectorLayer)
     setWindLayer(initialWindLayer)
 
     return () => initialMap.setTarget(undefined)
@@ -82,9 +82,9 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
 
   useEffect(() => {
     if (osmLayer) osmLayer.setVisible(layersVisible.osm)
-    if (vectorTileLayer) vectorTileLayer.setVisible(layersVisible.vector)
+    if (vectorLayer) vectorLayer.setVisible(layersVisible.vector)
     if (windLayer) windLayer.setVisible(layersVisible.wind)
-  }, [layersVisible, osmLayer, vectorTileLayer, windLayer])
+  }, [layersVisible, osmLayer, vectorLayer, windLayer])
 
   return (
     <div className="relative flex h-screen">
