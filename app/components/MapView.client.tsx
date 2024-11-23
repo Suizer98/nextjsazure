@@ -102,7 +102,8 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
       map.getView().animate({
         center: fromLonLat([103.5, 1.5]),
         zoom: 8,
-        duration: 500 // Smooth animation
+        rotation: 0,
+        duration: 500
       })
     }
   }
