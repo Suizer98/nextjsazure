@@ -1,7 +1,7 @@
 import { WindLayer } from 'ol-wind'
 import Map from 'ol/Map'
 import View from 'ol/View'
-import { defaults as defaultControls } from 'ol/control'
+import { Rotate, defaults as defaultControls } from 'ol/control'
 import GeoJSON from 'ol/format/GeoJSON'
 import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
@@ -11,6 +11,7 @@ import OSM from 'ol/source/OSM'
 import VectorSource from 'ol/source/Vector'
 import React, { useEffect, useRef, useState } from 'react'
 
+import MapCenterButton from './MapCenterButton.client'
 import Sidebar from './Sidebar'
 
 type LayersVisible = {
@@ -25,7 +26,7 @@ type MapViewProps = {
 }
 
 const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => {
-  const mapElementRef = useRef(null)
+  const mapElementRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [osmLayer, setOsmLayer] = useState<TileLayer<OSM> | null>(null)
   const [vectorLayer, setVectorLayer] = useState<VectorLayer<VectorSource> | null>(null)
@@ -40,6 +41,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
   useEffect(() => {
     if (!mapElementRef.current) return
 
+    // Define layers
     const initialOsmLayer = new TileLayer({
       source: new OSM()
     })
@@ -62,6 +64,12 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
       }
     })
 
+    // Add Rotate control
+    const rotateControl = new Rotate({
+      autoHide: true
+    })
+
+    // Initialize map
     const initialMap = new Map({
       target: mapElementRef.current,
       layers: [initialOsmLayer, initialVectorLayer, initialWindLayer],
@@ -72,6 +80,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
       controls: defaultControls({ zoom: false })
     })
 
+    // Save layers and map to state
     setMap(initialMap)
     setOsmLayer(initialOsmLayer)
     setVectorLayer(initialVectorLayer)
@@ -81,10 +90,22 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
   }, [windData])
 
   useEffect(() => {
+    // Update layer visibility based on state
     if (osmLayer) osmLayer.setVisible(layersVisible.osm)
     if (vectorLayer) vectorLayer.setVisible(layersVisible.vector)
     if (windLayer) windLayer.setVisible(layersVisible.wind)
   }, [layersVisible, osmLayer, vectorLayer, windLayer])
+
+  // Handler for recentering the map
+  const handleRecenter = () => {
+    if (map) {
+      map.getView().animate({
+        center: fromLonLat([103.5, 1.5]),
+        zoom: 8,
+        duration: 500 // Smooth animation
+      })
+    }
+  }
 
   return (
     <div className="relative flex h-screen">
@@ -98,6 +119,9 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
         setWindData={setWindData}
       />
       <div ref={mapElementRef} className="flex-grow" style={{ height: '100%' }}></div>
+
+      {/* Custom Map Center Button */}
+      <MapCenterButton onClick={handleRecenter} />
     </div>
   )
 }
