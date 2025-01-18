@@ -74,7 +74,7 @@ const MapView: React.FC<MapViewProps> = ({ sidebarExpanded, toggleSidebar }) => 
       target: mapElementRef.current,
       layers: [initialOsmLayer, initialVectorLayer, initialWindLayer],
       view: new View({
-        center: fromLonLat(103.8198, 1.3521]),
+        center: fromLonLat([103.8198, 1.3521]),
         zoom: 8
       }),
       controls: defaultControls({ zoom: false })
