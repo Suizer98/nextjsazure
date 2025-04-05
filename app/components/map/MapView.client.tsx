@@ -11,8 +11,8 @@ import OSM from 'ol/source/OSM'
 import VectorSource from 'ol/source/Vector'
 import React, { useEffect, useRef, useState } from 'react'
 
+import Sidebar from '../Sidebar'
 import MapCenterButton from './MapCenterButton.client'
-import Sidebar from './Sidebar'
 
 type LayersVisible = {
   osm: boolean

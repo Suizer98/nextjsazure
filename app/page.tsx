@@ -6,7 +6,7 @@ import { useState } from 'react'
 import UserInteractionPanel from './components/UserInteractionPanel'
 
 // Dynamically import MapView.client, disabling SSR
-const MapView = dynamic(() => import('./components/MapView.client'), {
+const MapView = dynamic(() => import('./components/map/MapView.client'), {
   ssr: false
 })
 
